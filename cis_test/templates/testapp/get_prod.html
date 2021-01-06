@@ -1,0 +1,35 @@
+{% extends "testapp/base.html" %}
+{% load static %}
+{% block body_block %}
+  <div class="container">
+    <div class="jumbotron">
+        <h3>Product List</h3>
+        <table class="table table-striped table-bordered table-sm">  
+            <thead class="thead-dark">  
+            <tr>  
+                <th>Product ID</th>  
+                <th>Product Name</th>  
+                <th>Categories</th>  
+                <th>Product Description</th>  
+                <th>Product owner</th> 
+                <th>Actions</th> 
+            </tr>  
+            </thead>  
+            <tbody>  
+        <tbody>  
+        {% for p in prod %}
+        <tr>
+            <td>{{p.id}}</td>
+            <td>{{p.product_name}}</td>
+            <td>{{p.category}}</td>
+            <td>{{p.description}}</td>
+            <td>{{p.owner}}</td>
+            <td>
+                <a class="navbar-link" href="{% url 'update_products' id=p.id %}">Edit</a>
+                <a class="navbar-link" href="/delete/{{ p.id }}">Delete</a>  
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>  
+</table>  
+{% endblock %}
